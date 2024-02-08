@@ -19,4 +19,3 @@ Route::get('/', function () {
 });
 
 Route::resource('/car',CarController::class);
-// Route::get('/logout', [LoginDash::class, 'logout'])->name('logoutt');
