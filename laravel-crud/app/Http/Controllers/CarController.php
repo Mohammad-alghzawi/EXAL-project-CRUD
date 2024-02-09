@@ -47,6 +47,7 @@ if ($request->hasFile('image')) {
     $imageName = time().'.'.$image->getClientOriginalExtension();
     $image->move(public_path('images'), $imageName);
     $car->image = $imageName;
+    
 }
 
 $car->save();
@@ -63,7 +64,7 @@ return redirect('car')->with('status', 'Car Added successfully!');
     public function show($id)
     {
         $car = car::find($id);
-        return view('pages.show',compact("car"))->with('hi', 'Car showed successfully!');
+        return view('pages.show',compact("car"));
         
 
     }

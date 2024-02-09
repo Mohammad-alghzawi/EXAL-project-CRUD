@@ -18,9 +18,14 @@
         <label>Image</label></br>
         <input  name="image" type="file" class="form-control white-input" >
        <img src="/images/{{ $car->image }}" width="150px" class="mt-4">  </br></br>
-        <input type="submit" value="Update" class="btn btn-success"></br>
+       <div class="d-flex gap-1">
+       
+        <input type="submit" value="Update" class="btn btn-success">
+         <a  href="{{route('car.index')}}" class="btn btn-primary btn-sm">Back</a>
+        </div>
+
     </form>
-    
+
   </div>
 </div>
   

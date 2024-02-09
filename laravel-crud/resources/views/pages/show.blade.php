@@ -9,9 +9,9 @@
         <p class="card-text">Model : {{ $car->model_year }}</p>
         <p class="card-text">Color : {{ $car->color }}</p>
         @if($car->image)
-      <img src="{{ asset('images/' . $car->image) }}" alt="Car Image" width="100px" height="100px">
+      <img src="{{ asset('images/' . $car->image) }}" alt="Car Image" width="100px" height="100px"></br>
       @endif
-        
+       <div> <a  href="{{route('car.index')}}"><button class="btn btn-primary btn-sm">Back</button> </a></div>
   </div>
     </hr>
   </div>
