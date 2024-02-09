@@ -5,7 +5,7 @@
   <div class="card-header">Create New car</div>
   <div class="card-body">
        
-      <form action="{{ route('car.store') }}" method="post">
+      <form action="{{ route('car.store') }}" method="post" enctype="multipart/form-data">
       @csrf
         <label>Type</label></br>
         <input type="text" name="type" id="type" class="form-control"></br>
@@ -13,6 +13,7 @@
         <input type="number" name="model_year" id="model_year" class="form-control"></br>
         <label>Color</label></br>
         <input type="text" name="color" id="color" class="form-control"></br>
+        <input  name="image" type="file" class="form-control white-input" id="inputPrice"></br>
         <input type="submit" value="Save" class="btn btn-success"></br>
     </form>
     

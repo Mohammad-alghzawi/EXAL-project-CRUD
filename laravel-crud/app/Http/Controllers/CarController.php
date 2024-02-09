@@ -38,12 +38,20 @@ class CarController extends Controller
     {
         $car = new Car;
 
-        $car->type = $request->type;
-        $car->model_year = $request->model_year;
-        $car->color = $request->color;
+$car->type = $request->type;
+$car->model_year = $request->model_year;
+$car->color = $request->color;
 
-        $car->save();
-        return redirect('car')->with('status', 'Car Addedd successfully!'); 
+if ($request->hasFile('image')) {
+    $image = $request->file('image');
+    $imageName = time().'.'.$image->getClientOriginalExtension();
+    $image->move(public_path('images'), $imageName);
+    $car->image = $imageName;
+}
+
+$car->save();
+return redirect('car')->with('status', 'Car Added successfully!');
+
     }
 
     /**
@@ -55,7 +63,7 @@ class CarController extends Controller
     public function show($id)
     {
         $car = car::find($id);
-        return view('pages.show',compact("car"));
+        return view('pages.show',compact("car"))->with('hi', 'Car showed successfully!');
         
 
     }
@@ -81,10 +89,27 @@ class CarController extends Controller
      */
     public function update(Request $request, $id)
     {
+        
+        
+
+
         $car = car::find($id);
-        $input = $request->all();
-        $car->update($input);
+
+        $car->type = $request->input('type');
+        $car->model_year = $request->input('model_year');
+        $car->color = $request->input('color');
+
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('images'), $imageName); 
+            $car->image = $imageName;
+        }
+        
+
+        $car->save();
         return redirect('car')->with('status', 'Car Updated!');  
+        
     }
 
     /**

@@ -5,7 +5,7 @@
   <div class="card-header">Edit car</div>
   <div class="card-body">
        
-      <form action="{{route('car.update',$car->id)}}" method="post">
+      <form action="{{route('car.update',$car->id)}}" method="post" enctype="multipart/form-data">
         @csrf
         @method("put")
         <input type="hidden" name="id" id="id" value="{{$car->id}}" id="id" />
@@ -15,6 +15,9 @@
         <input type="text" name="model_year" id="address" value="{{$car->model_year}}" class="form-control"></br>
         <label>Mobile</label></br>
         <input type="text" name="color" id="mobile" value="{{$car->color}}" class="form-control"></br>
+        <label>Image</label></br>
+        <input  name="image" type="file" class="form-control white-input" >
+       <img src="/images/{{ $car->image }}" width="150px" class="mt-4">  </br></br>
         <input type="submit" value="Update" class="btn btn-success"></br>
     </form>
     

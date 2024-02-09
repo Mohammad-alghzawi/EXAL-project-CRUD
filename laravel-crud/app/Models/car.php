@@ -12,6 +12,7 @@ class car extends Model
         'type',
         'model_year',
         'color',
+        'image',
         // '_token', // Add _token to allow mass assignment
     ];
 }

@@ -34,6 +34,7 @@
                                         <th>Type</th>
                                         <th>Model by year</th>
                                         <th>Color</th>
+                                        <th>Image</th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
@@ -43,6 +44,8 @@
         <td>{{ $item->type }}</td>
         <td>{{ $item->model_year }}</td>
         <td>{{ $item->color }}</td>
+        <td><a href="#"><img src="{{ url('/images/' . $item->image) }}" width="100px"
+                                                height="100px" alt="Avatar"></a></td>
 
         <td>
             <a href="{{route('car.show',$item->id)}}" title="View car"><button style="color:white" class="btn btn-info btn-sm"><i style="color:white" class="fa-solid fa-eye"></i> View</button></a>

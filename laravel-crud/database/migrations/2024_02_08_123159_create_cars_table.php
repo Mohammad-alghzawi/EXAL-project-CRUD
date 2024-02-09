@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string("type");
             $table->integer("model_year");
             $table->string("color");
+            $table->string("image");
             $table->timestamps();
         });
     }
