@@ -15,8 +15,8 @@
                     <label for="name_en">Name</label><br>
                     <input type="text" name="name_en" id="name_en" class="form-control"><br>
                 </div>
-                <div class="col-6">
-                    <label for="name_ar" style="direction: rtl;">الاسم</label><br>
+                <div style="direction: rtl;" class="col-6">
+                    <label for="name_ar">الاسم</label><br>
                     <input type="text" name="name_ar" id="name_ar" class="form-control"><br>
                 </div>
 
@@ -27,8 +27,8 @@
                     <label for="short_d_en">Short description</label><br>
                     <textarea name="short_d_en" id="short_d_en" class="form-control"></textarea><br>
                 </div>
-                <div class="col-6">
-                    <label for="short_d_ar" style="direction: rtl;">شرح قصير</label><br>
+                <div style="direction: rtl;" class="col-6">
+                    <label for="short_d_ar">شرح قصير</label><br>
                     <textarea name="short_d_ar" id="short_d_ar" class="form-control"></textarea><br>
                 </div>
 
@@ -40,21 +40,21 @@
                     <label for="long_d_en">Long description</label><br>
                     <textarea name="long_d_en" id="long_d_en" class="form-control"></textarea><br>
                 </div>
-                <div class="col-6">
-                    <label for="long_d_ar" style="direction: rtl;">شرح طويل</label><br>
+                <div style="direction: rtl;" class="col-6">
+                    <label for="long_d_ar">شرح طويل</label><br>
                     <textarea name="long_d_ar" id="long_d_ar" class="form-control"></textarea><br>
                 </div>
 
             </div>
 
 
-
-
-
-
             <label>Category</label></br>
             <input type="text" name="category" id="category" class="form-control"></br>
-            <input type="submit" value="Save" class="btn btn-success"></br>
+
+            <div class="d-flex gap-1">
+                <input type="submit" value="Save" class="btn btn-success"></br>
+                <a href="{{route('product.index')}}" class="btn btn-primary btn-sm">Back</a>
+            </div>
         </form>
 
     </div>

@@ -35,9 +35,9 @@ class AttributeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request )
 {
-    // Validate the incoming request data
+ 
     $validatedData = $request->validate([
         'product_id' => 'required',
         'name_en' => 'required',
@@ -49,13 +49,8 @@ class AttributeController extends Controller
         'link' => 'required',
     ]);
 
-    // Process the uploaded file
-    // $file = $request->file('link');
-    // $fileName = time() . '_' . $file->getClientOriginalName();
-    // $filePath = $file->storeAs('images', $fileName); 
     
 
-    // Create the attribute and image records
     $attribute = Attribute::create([
         'product_id' => $validatedData['product_id'],
         'name_en' => $validatedData['name_en'],
@@ -76,8 +71,8 @@ class AttributeController extends Controller
     $image->attribute_id = $attribute->id;
     $image->save();
 
-    // Redirect back with success message
-    return redirect()->back()->with('success', 'Attribute created successfully!');
+    
+    return redirect()->route('product.show', ['product' => $validatedData['product_id']])->with('status', 'Attribute added successfuly');
 }
 
 
@@ -124,8 +119,10 @@ class AttributeController extends Controller
      * @param  \App\Models\Attribute  $attribute
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Attribute $attribute)
+    public function destroy($id)
     {
-        //
+       $attribute= Attribute::find( $id );
+        Attribute::destroy($id);
+        return redirect()->route('product.show', ['product' => $attribute->product_id])->with('status', 'Attribute Deleted successfully!'); 
     }
 }

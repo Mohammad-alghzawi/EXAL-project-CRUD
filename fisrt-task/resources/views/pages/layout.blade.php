@@ -10,6 +10,37 @@
 <div class="container">
     @yield('content')
 </div>
-   
+<script src="https://cdn.ckeditor.com/ckeditor5/34.0.0/classic/ckeditor.js"></script>
+
+<script>
+    try {
+        ClassicEditor
+            .create(document.querySelector('#short_d_en'))
+            .catch(error => {
+                console.error(error);
+            });
+
+        ClassicEditor
+            .create(document.querySelector('#short_d_ar'))
+            .catch(error => {
+                console.error(error);
+            });
+
+        ClassicEditor
+            .create(document.querySelector('#long_d_en'))
+            .catch(error => {
+                console.error(error);
+            });
+
+        ClassicEditor
+            .create(document.querySelector('#long_d_ar'))
+            .catch(error => {
+                console.error(error);
+            });
+    } catch (error) {
+        console.error('CKEditor initialization error:', error);
+    }
+</script>
+
 </body>
 </html>

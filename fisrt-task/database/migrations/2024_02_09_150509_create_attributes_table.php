@@ -19,9 +19,9 @@ return new class extends Migration
             $table->string('name_en');
             $table->unsignedBigInteger('product_id');
             $table->foreign('product_id')->references('id')->on('products'); 
-            $table->float('price');
+            $table->integer('price');
             $table->string('discount_type');
-            $table->float('discount_amount'); 
+            $table->integer('discount_amount'); 
             $table->integer('quantity');
             $table->timestamps();
         });

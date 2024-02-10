@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Models\Attribute;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+
 
 class ProductController extends Controller
 {
@@ -37,7 +39,20 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
+        // dd($request);
+        $validatedData = [
+            'SKU' => $request->input('SKU'),
+            'name_en' => $request->input('name_en'),
+            'name_ar' => $request->input('name_ar'),
+            'short_d_en' => $request->input('short_d_en'),
+            'short_d_ar' => $request->input('short_d_ar'),
+            'long_d_en' => $request->input('long_d_en'),
+            'long_d_ar' => $request->input('long_d_ar'),
+            'category' => $request->input('category'),
+        ];
+        
+        // Validate the data
+        $validator = Validator::make($validatedData, [
             'SKU' => 'required',
             'name_en' => 'required',
             'name_ar' => 'required',
@@ -63,7 +78,7 @@ class ProductController extends Controller
         $product->save();
 
       
-        return redirect('product')->with('status', 'Car Added successfully!');    }
+        return redirect('product')->with('status', 'product Added successfully');    }
 
     /**
      * Display the specified resource.
@@ -84,9 +99,10 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function edit(Product $product)
+    public function edit($id)
     {
-        //
+        $product = Product::find($id);
+        return view('pages.edit',compact('product'));
     }
 
     /**
@@ -96,9 +112,22 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product)
+    public function update(Request $request, $id)
     {
-        //
+        $product = Product::find($id);
+
+        $product->SKU = $request->input('SKU');
+        $product->name_en = $request->input('name_en');
+        $product->name_ar = $request->input('name_ar');
+        $product->short_d_en = $request->input('short_d_en');
+        $product->short_d_ar = $request->input('short_d_ar');
+        $product->long_d_en = $request->input('long_d_en');
+        $product->long_d_ar = $request->input('long_d_ar');
+        $product->category = $request->input('category');
+
+        
+        $product->save();
+        return redirect('product')->with('status', 'product Updated');  
     }
 
     /**
@@ -107,8 +136,15 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Product $product)
+    public function destroy($id)
     {
-        //
+        try {
+            Product::destroy($id);
+        } catch (\Throwable $th) {
+            return redirect('product')->with('wrong', 'we can not delete this produt because have attributes inside!'); 
+
+        }
+        
+        return redirect('product')->with('status', 'Product Deleted successfully!'); 
     }
 }

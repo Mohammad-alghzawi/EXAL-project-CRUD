@@ -49,7 +49,11 @@
 
             <input name="link" type="file" class="form-control white-input" id="link"></br>
 
+            <div class="d-flex gap-1">
+
             <input type="submit" value="Save" class="btn btn-success"></br>
+            <a href="{{route('product.show', $product->id)}}" class="btn btn-primary btn-sm">Back</a>
+</div>
         </form>
 
     </div>
